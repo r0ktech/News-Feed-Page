@@ -8,9 +8,10 @@ import MainArticle from '../components/MainArticle'
 import RecentArticles from '../components/RecentArticles'
 import Footer from '../components/Footer'
 
-// Use proxy API endpoint to avoid CORS issues
-// The API key is handled server-side in the Vercel function
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api/news'
+// Get your free API key at https://newsapi.org/
+// Add it to your .env file as VITE_NEWS_API_KEY
+const API_KEY = import.meta.env.VITE_NEWS_API_KEY || ''
+const API_BASE_URL = import.meta.env.VITE_NEWS_API_BASE_URL || 'https://newsapi.org/v2'
 
 function HomePage() {
   const [articles, setArticles] = useState([])
@@ -36,20 +37,14 @@ function HomePage() {
     
     try {
       let url = ''
-      const params = new URLSearchParams()
       
       if (query) {
-        params.append('endpoint', 'everything')
-        params.append('query', query)
-        params.append('pageSize', '20')
+        url = `${API_BASE_URL}/everything?q=${encodeURIComponent(query)}&sortBy=publishedAt&pageSize=20&apiKey=${API_KEY}`
       } else {
         const categoryParam = categories[category] || 'general'
-        params.append('category', categoryParam)
-        params.append('country', 'us')
-        params.append('pageSize', '20')
+        url = `${API_BASE_URL}/top-headlines?country=us&category=${categoryParam}&pageSize=20&apiKey=${API_KEY}`
       }
 
-      url = `${API_BASE_URL}?${params.toString()}`
       const response = await axios.get(url)
       
       if (response.data.articles && response.data.articles.length > 0) {
@@ -67,16 +62,11 @@ function HomePage() {
     } catch (err) {
       console.error('Error fetching news:', err)
       if (err.response?.status === 401) {
-        setError('Invalid API key. Please configure your NewsAPI key in Vercel environment variables.')
+        setError('Invalid API key. Please add your NewsAPI key to the .env file as VITE_NEWS_API_KEY')
       } else if (err.response?.status === 429) {
         setError('API rate limit exceeded. Please try again later.')
-      } else if (err.response?.status === 500) {
-        const errorMsg = err.response?.data?.message || err.response?.data?.error || 'Server error'
-        setError(`Server error: ${errorMsg}. Check Vercel function logs.`)
-      } else if (err.message === 'Network Error' || !err.response) {
-        setError('Failed to fetch news. Please check your internet connection and ensure the API endpoint is working.')
       } else {
-        setError(`Failed to fetch news: ${err.message || 'Unknown error'}`)
+        setError('Failed to fetch news. Please check your internet connection.')
       }
     } finally {
       setLoading(false)

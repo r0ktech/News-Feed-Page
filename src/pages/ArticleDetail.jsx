@@ -5,9 +5,10 @@ import '../App.css'
 import ArticleHeader from '../components/ArticleHeader'
 import '../components/ArticleDetail.css'
 
-// Use proxy API endpoint to avoid CORS issues
-// The API key is handled server-side in the Vercel function
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api/news'
+// Get your free API key at https://newsapi.org/
+// Add it to your .env file as VITE_NEWS_API_KEY
+const API_KEY = import.meta.env.VITE_NEWS_API_KEY || ''
+const API_BASE_URL = import.meta.env.VITE_NEWS_API_BASE_URL || 'https://newsapi.org/v2'
 
 function ArticleDetail() {
   const { articleId } = useParams()
@@ -57,12 +58,8 @@ function ArticleDetail() {
           
           // Fetch related articles based on article category or source
           const category = parsedArticle.category || 'technology'
-          const params = new URLSearchParams({
-            category: category,
-            pageSize: '3'
-          })
           const response = await axios.get(
-            `${API_BASE_URL}?${params.toString()}`
+            `${API_BASE_URL}/top-headlines?category=${category}&pageSize=3&apiKey=${API_KEY}`
           )
           
           if (response.data.articles) {
@@ -77,13 +74,8 @@ function ArticleDetail() {
         }
 
         // If not in localStorage, try to fetch by searching
-        const searchParams = new URLSearchParams({
-          endpoint: 'everything',
-          query: articleId,
-          pageSize: '1'
-        })
         const searchResponse = await axios.get(
-          `${API_BASE_URL}?${searchParams.toString()}`
+          `${API_BASE_URL}/everything?q=${encodeURIComponent(articleId)}&pageSize=1&apiKey=${API_KEY}`
         )
         
         if (searchResponse.data.articles && searchResponse.data.articles.length > 0) {

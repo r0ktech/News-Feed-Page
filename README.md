@@ -141,6 +141,7 @@ This project is configured for easy deployment on Vercel:
 4. **Deploy** - Click deploy and wait for the build to complete
 
 The project includes:
+
 - ✅ Serverless API proxy to handle CORS issues
 - ✅ React Router SPA routing configuration
 - ✅ Environment variable support
@@ -171,11 +172,11 @@ For detailed deployment instructions, see [VERCEL_DEPLOYMENT.md](./VERCEL_DEPLOY
 
 ## 📝 Environment Variables
 
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `VITE_NEWS_API_KEY` | Your NewsAPI key | Yes |
-| `VITE_NEWS_API_BASE_URL` | NewsAPI base URL (default: https://newsapi.org/v2) | No |
-| `VITE_API_BASE_URL` | API proxy endpoint (default: /api/news) | No |
+| Variable                 | Description                                        | Required |
+| ------------------------ | -------------------------------------------------- | -------- |
+| `VITE_NEWS_API_KEY`      | Your NewsAPI key                                   | Yes      |
+| `VITE_NEWS_API_BASE_URL` | NewsAPI base URL (default: https://newsapi.org/v2) | No       |
+| `VITE_API_BASE_URL`      | API proxy endpoint (default: /api/news)            | No       |
 
 ## ⚠️ Important Notes
 
