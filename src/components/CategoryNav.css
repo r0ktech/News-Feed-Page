@@ -1,0 +1,39 @@
+.category-nav {
+  max-width: 1200px;
+  margin: 0 auto 32px;
+  padding: 0 24px;
+}
+
+.category-nav-container {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.category-button {
+  background: none;
+  border: none;
+  padding: 8px 20px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #4a4a4a;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-radius: 20px;
+}
+
+.category-button:hover {
+  color: #2563eb;
+  background-color: #f0f4ff;
+}
+
+.category-button.active {
+  background-color: #2563eb;
+  color: #ffffff;
+}
+
+.category-button.active:hover {
+  background-color: #1d4ed8;
+}
+

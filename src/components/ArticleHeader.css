@@ -1,0 +1,139 @@
+.article-header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 16px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.article-header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.article-logo {
+  text-decoration: none;
+}
+
+.article-logo-text {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1e3a8a;
+  text-decoration: none;
+}
+
+.article-header-nav {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.article-nav-link {
+  color: #4a4a4a;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.article-nav-link:hover {
+  color: #1e40af;
+}
+
+.article-nav-link.active {
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.article-nav-link:not(.active) {
+  font-weight: 500;
+}
+
+.article-header-actions {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.article-search-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.article-search-icon {
+  position: absolute;
+  left: 12px;
+  color: #9ca3af;
+  pointer-events: none;
+}
+
+.article-search-input {
+  padding: 8px 12px 8px 36px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 14px;
+  background-color: #f9fafb;
+  width: 200px;
+  transition: border-color 0.2s;
+}
+
+.article-search-input:focus {
+  outline: none;
+  border-color: #2563eb;
+  background-color: #ffffff;
+}
+
+.article-search-input::placeholder {
+  color: #9ca3af;
+}
+
+.article-icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #4a4a4a;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+}
+
+.article-icon-button:hover {
+  color: #2563eb;
+}
+
+.article-user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.article-user-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .article-header-nav {
+    display: none;
+  }
+  
+  .article-header-container {
+    padding: 0 16px;
+  }
+
+  .article-search-input {
+    width: 150px;
+  }
+}
+

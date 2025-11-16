@@ -1,0 +1,372 @@
+.article-detail-page {
+  min-height: 100vh;
+  background-color: #ffffff;
+}
+
+.article-detail-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+.article-breadcrumbs {
+  font-size: 14px;
+  color: #9ca3af;
+  margin-bottom: 16px;
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.breadcrumb-separator {
+  color: #d1d5db;
+}
+
+.article-detail-headline {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #1a1a1a;
+  margin-bottom: 16px;
+  margin-top: 0;
+}
+
+.article-meta {
+  font-size: 14px;
+  color: #4a4a4a;
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+
+.meta-separator {
+  color: #9ca3af;
+}
+
+.article-main-image {
+  width: 100%;
+  height: 450px;
+  margin-bottom: 32px;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(180deg, #5eead4 0%, #2dd4bf 100%);
+}
+
+.article-main-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.article-image-placeholder {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #5eead4 0%, #2dd4bf 100%);
+}
+
+.article-body {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #1a1a1a;
+  margin-bottom: 32px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+
+.article-body p {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.article-body * {
+  margin-bottom: 20px;
+  line-height: 1.8;
+}
+
+.article-body *:last-child {
+  margin-bottom: 0;
+}
+
+.article-social-bar {
+  display: flex;
+  gap: 32px;
+  padding: 20px 0;
+  border-top: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 48px;
+}
+
+.social-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  color: #9ca3af;
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.2s;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+
+.social-button:hover {
+  color: #2563eb;
+}
+
+.social-button svg {
+  stroke: currentColor;
+}
+
+.section-heading {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 24px;
+}
+
+.related-articles-section {
+  margin-bottom: 48px;
+}
+
+.related-articles-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.related-article-card {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.related-article-category {
+  font-size: 12px;
+  color: #2563eb;
+  font-weight: 500;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.related-article-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.related-article-description {
+  font-size: 14px;
+  color: #4a4a4a;
+  line-height: 1.6;
+  margin-bottom: 16px;
+  flex: 1;
+}
+
+.related-article-image {
+  width: 100%;
+  height: 200px;
+  margin-bottom: 16px;
+  border-radius: 6px;
+  overflow: hidden;
+  background-color: #10b981;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.related-article-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.related-article-placeholder {
+  width: 100%;
+  height: 100%;
+  background-color: #10b981;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.related-article-placeholder::before {
+  content: '';
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+}
+
+.related-article-image:has(img) {
+  background-color: transparent;
+}
+
+.related-article-link {
+  color: #2563eb;
+  text-decoration: underline;
+  font-size: 14px;
+  font-weight: 500;
+  align-self: flex-start;
+  transition: color 0.2s;
+}
+
+.related-article-link:hover {
+  color: #1d4ed8;
+}
+
+.comments-section {
+  margin-bottom: 48px;
+}
+
+.comments-list {
+  margin-bottom: 32px;
+}
+
+.comment-item {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.comment-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.comment-content {
+  flex: 1;
+}
+
+.comment-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.comment-author {
+  font-weight: 700;
+  color: #1a1a1a;
+  font-size: 14px;
+}
+
+.comment-date {
+  font-size: 14px;
+  color: #9ca3af;
+}
+
+.comment-text {
+  font-size: 14px;
+  color: #4a4a4a;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.add-comment-section {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+  align-items: flex-start;
+}
+
+.comment-input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 14px;
+  background-color: #f9fafb;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.comment-input:focus {
+  outline: none;
+  border-color: #2563eb;
+  background-color: #ffffff;
+}
+
+.comment-input::placeholder {
+  color: #9ca3af;
+}
+
+.post-comment-button {
+  background-color: #1e3a8a;
+  color: #ffffff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-left: 52px;
+  margin-top: 0;
+  display: block;
+}
+
+.post-comment-button:hover {
+  background-color: #1e3a8a;
+  opacity: 0.9;
+}
+
+.back-button {
+  background-color: #2563eb;
+  color: #ffffff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: 16px;
+}
+
+.back-button:hover {
+  background-color: #1d4ed8;
+}
+
+@media (max-width: 768px) {
+  .article-detail-headline {
+    font-size: 28px;
+  }
+
+  .article-main-image {
+    height: 250px;
+  }
+
+  .related-articles-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .article-social-bar {
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+}
+
