@@ -70,8 +70,13 @@ function HomePage() {
         setError('Invalid API key. Please configure your NewsAPI key in Vercel environment variables.')
       } else if (err.response?.status === 429) {
         setError('API rate limit exceeded. Please try again later.')
+      } else if (err.response?.status === 500) {
+        const errorMsg = err.response?.data?.message || err.response?.data?.error || 'Server error'
+        setError(`Server error: ${errorMsg}. Check Vercel function logs.`)
+      } else if (err.message === 'Network Error' || !err.response) {
+        setError('Failed to fetch news. Please check your internet connection and ensure the API endpoint is working.')
       } else {
-        setError('Failed to fetch news. Please check your internet connection.')
+        setError(`Failed to fetch news: ${err.message || 'Unknown error'}`)
       }
     } finally {
       setLoading(false)
