@@ -8,7 +8,11 @@ import MainArticle from "../components/MainArticle";
 import RecentArticles from "../components/RecentArticles";
 import Footer from "../components/Footer";
 
-const API_BASE_URL = "/api/news";
+// Get your free API key at https://newsapi.org/
+// Add it to your .env file as VITE_NEWS_API_KEY
+const API_KEY = import.meta.env.VITE_NEWS_API_KEY || "";
+const API_BASE_URL =
+  import.meta.env.VITE_NEWS_API_BASE_URL || "https://newsapi.org/v2";
 
 function HomePage() {
   const [articles, setArticles] = useState([]);
@@ -36,12 +40,12 @@ function HomePage() {
       let url = "";
 
       if (query) {
-        url = `${API_BASE_URL}?endpoint=everything&q=${encodeURIComponent(
+        url = `${API_BASE_URL}/everything?q=${encodeURIComponent(
           query
-        )}&sortBy=publishedAt&pageSize=20`;
+        )}&sortBy=publishedAt&pageSize=20&apiKey=${API_KEY}`;
       } else {
         const categoryParam = categories[category] || "general";
-        url = `${API_BASE_URL}?endpoint=top-headlines&country=us&category=${categoryParam}&pageSize=20`;
+        url = `${API_BASE_URL}/top-headlines?country=us&category=${categoryParam}&pageSize=20&apiKey=${API_KEY}`;
       }
 
       const response = await axios.get(url);

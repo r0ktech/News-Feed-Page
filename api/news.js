@@ -17,7 +17,7 @@ export default async function handler(req, res) {
 
   try {
     const { endpoint, country, category, q, pageSize, sortBy } = req.query;
-    const apiKey = process.env.VITE_NEWS_API_KEY;
+    const apiKey = process.env.NEWS_API_KEY;
 
     if (!apiKey) {
       return res.status(500).json({ error: "API key not configured" });
