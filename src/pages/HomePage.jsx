@@ -9,10 +9,14 @@ import RecentArticles from "../components/RecentArticles";
 import Footer from "../components/Footer";
 
 // Get your free API key at https://newsapi.org/
-// Add it to your .env file as VITE_NEWS_API_KEY
+// Add it to your .env file as VITE_NEWS_API_KEY for local dev
+// and set `NEWS_API_KEY` in Vercel project settings for the serverless function.
 const API_KEY = import.meta.env.VITE_NEWS_API_KEY || "";
-const API_BASE_URL =
+const DIRECT_API_BASE_URL =
   import.meta.env.VITE_NEWS_API_BASE_URL || "https://newsapi.org/v2";
+// Use the server proxy on production (Vercel). During local dev use direct NewsAPI URL.
+const USE_PROXY = !import.meta.env.DEV;
+const PROXY_BASE = "/api/news";
 
 function HomePage() {
   const [articles, setArticles] = useState([]);
@@ -38,14 +42,26 @@ function HomePage() {
 
     try {
       let url = "";
+      const categoryParam = categories[category] || "general";
 
-      if (query) {
-        url = `${API_BASE_URL}/everything?q=${encodeURIComponent(
-          query
-        )}&sortBy=publishedAt&pageSize=20&apiKey=${API_KEY}`;
+      if (USE_PROXY) {
+        // Call serverless function on Vercel which uses NEWS_API_KEY
+        if (query) {
+          url = `${PROXY_BASE}?endpoint=everything&q=${encodeURIComponent(
+            query
+          )}&sortBy=publishedAt&pageSize=20`;
+        } else {
+          url = `${PROXY_BASE}?endpoint=top-headlines&country=us&category=${categoryParam}&pageSize=20`;
+        }
       } else {
-        const categoryParam = categories[category] || "general";
-        url = `${API_BASE_URL}/top-headlines?country=us&category=${categoryParam}&pageSize=20&apiKey=${API_KEY}`;
+        // Direct call to NewsAPI during local development
+        if (query) {
+          url = `${DIRECT_API_BASE_URL}/everything?q=${encodeURIComponent(
+            query
+          )}&sortBy=publishedAt&pageSize=20&apiKey=${API_KEY}`;
+        } else {
+          url = `${DIRECT_API_BASE_URL}/top-headlines?country=us&category=${categoryParam}&pageSize=20&apiKey=${API_KEY}`;
+        }
       }
 
       const response = await axios.get(url);
@@ -84,6 +100,7 @@ function HomePage() {
 
   useEffect(() => {
     fetchNews(searchQuery, selectedCategory);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedCategory]);
 
   const handleSearch = (query) => {
